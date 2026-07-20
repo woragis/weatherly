@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { fetchGeocode, REVALIDATE_SECONDS } from "@/lib/open-meteo";
 
-export const revalidate = REVALIDATE_SECONDS;
-
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get("q")?.trim() ?? "";
 

@@ -201,6 +201,7 @@ export async function fetchForecast(
   lon: number
 ): Promise<WeatherPayload> {
   const res = await fetch(buildForecastUrl(lat, lon), {
+    cache: "force-cache",
     next: { revalidate: REVALIDATE_SECONDS },
   });
   if (!res.ok) {
@@ -212,6 +213,7 @@ export async function fetchForecast(
 
 export async function fetchGeocode(query: string): Promise<GeocodeResult[]> {
   const res = await fetch(buildGeocodeUrl(query), {
+    cache: "force-cache",
     next: { revalidate: REVALIDATE_SECONDS },
   });
   if (!res.ok) {

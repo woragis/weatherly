@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { fetchForecast, REVALIDATE_SECONDS } from "@/lib/open-meteo";
 
-export const revalidate = REVALIDATE_SECONDS;
-
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const lat = Number(searchParams.get("lat"));
