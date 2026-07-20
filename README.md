@@ -78,10 +78,17 @@ Se a API responder `401`, a key ainda não está ativa ou é inválida.
 ## Testes (web)
 
 ```bash
-npm test              # unit + integration (Vitest)
+npm test              # unit + integration (Vitest) — 39+ cases
 npm run test:unit
-npm run test:e2e      # Playwright
+npm run test:e2e      # Playwright (home + SEO: blog, clima, robots, sitemap)
 ```
+
+### Checklist visual / qualidade (manual)
+
+1. Favicon / Apple icon (gradiente + W) no browser
+2. Home → links “Clima por cidade” e “Blog” acima da nav
+3. `/clima/joao-pessoa-pb` e um post do `/blog` no mobile viewport
+4. Opcional: Lighthouse na home (Performance/SEO) — CI automatizado ainda não
 
 ## Como rodar web + mobile
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { AppNav } from "@/components/app-nav";
+import { SiteLinks } from "@/components/site-links";
 import type { Place } from "@/hooks/use-place";
 import type { WeatherTheme } from "@/lib/open-weather";
 
@@ -38,6 +39,7 @@ export function PageShell({
           )}
         </header>
         {children}
+        <SiteLinks />
       </div>
       <AppNav place={place} />
     </div>

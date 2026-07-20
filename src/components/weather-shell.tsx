@@ -7,6 +7,7 @@ import { DailyList } from "@/components/daily-list";
 import { Hero } from "@/components/hero";
 import { HourlyStrip } from "@/components/hourly-strip";
 import { MetricsRow } from "@/components/metrics-row";
+import { SiteLinks } from "@/components/site-links";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import type { Place } from "@/hooks/use-place";
 import type { GeocodeResult, WeatherPayload, WeatherTheme } from "@/lib/open-weather";
@@ -183,6 +184,7 @@ export function WeatherShell({ initialPlace = null }: WeatherShellProps) {
             <MetricsRow current={weather.current} />
             <HourlyStrip hours={weather.hourly} />
             <DailyList days={weather.daily} />
+            <SiteLinks />
           </div>
         )}
       </div>

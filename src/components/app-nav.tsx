@@ -28,7 +28,6 @@ export function AppNav({ place }: AppNavProps) {
     >
       {ITEMS.map((item) => {
         const active = pathname === item.href;
-        // Config e cidades não dependem de lugar; demais levam o lugar atual
         const needsPlace = item.href !== "/config" && item.href !== "/cidades";
         return (
           <Link

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AppNav } from "@/components/app-nav";
+import { SiteLinks } from "@/components/site-links";
 
 type MarketingShellProps = {
   title: string;
@@ -28,14 +29,9 @@ export function MarketingShell({ title, subtitle, children }: MarketingShellProp
           ) : null}
         </header>
         {children}
-        <footer className="mt-4 flex flex-wrap gap-4 border-t border-white/15 pt-4 text-sm text-white/70">
-          <Link href="/clima" className="hover:text-white">
-            Clima por cidade
-          </Link>
-          <Link href="/blog" className="hover:text-white">
-            Blog
-          </Link>
-          <Link href="/" className="hover:text-white">
+        <footer className="mt-4 flex flex-col gap-3 border-t border-white/15 pt-4">
+          <SiteLinks />
+          <Link href="/" className="text-center text-sm text-white/70 hover:text-white">
             Abrir app
           </Link>
         </footer>
