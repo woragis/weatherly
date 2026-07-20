@@ -1,28 +1,46 @@
-# Weatherly
+# Weatherly (`saas-weatherly`)
 
-App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geolocalização e cache. Não é um SaaS.
+App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geolocalização e cache. Não é um produto de assinatura — o prefixo `saas-` é só o nome do repo.
 
-> Status: MVP web — sandbox / portfólio (rebrand do weather-app)
+> Status: MVP web + mobile (Expo submodule)
+
+| Repo | URL |
+|------|-----|
+| Web + BFF | https://github.com/woragis/saas-weatherly |
+| Mobile (submodule `mobile/`) | https://github.com/woragis/saas-weatherly-mobile |
+
+## Clone
+
+```bash
+git clone --recurse-submodules git@github.com:woragis/saas-weatherly.git
+cd saas-weatherly
+
+# se já clonou sem submodules:
+git submodule update --init --recursive
+```
 
 ## Posicionamento
 
 - Demonstrar qualidade técnica e visual (referência: Apple Weather)
-- Dados via **OpenWeatherMap** (plano gratuito; key em `.env.local`)
+- Dados via **OpenWeatherMap** (plano gratuito; key em `.env.local` **só no web**)
 - **Sem IA** no curto prazo
-- **Mobile** (Expo) **adiado** até key OWM ok + testes verdes — ver [`mobile/README.md`](mobile/README.md)
+- Mobile Expo consome as Route Handlers deste repo (BFF) — ver [`mobile/README.md`](mobile/README.md)
 
-## MVP (agora)
+## MVP web
 
 - Temperatura atual, condição, máxima/mínima
 - Sensação térmica, umidade, vento
 - Previsão horária (~24h) e diária (7 dias)
-- Geolocalização do navegador + busca de cidade
+- Geolocalização + busca de cidade
 - Estados de loading, erro de GPS e erro de API
-- Atmosfera (gradiente) que muda com condição e dia/noite
-- Animações leves (entrada do hero, dica de scroll, transição de fundo)
+- Atmosfera por condição + animações leves
 - Route Handlers Next.js com cache ~15 min
 
-## Smoke manual
+## MVP mobile
+
+Mesma superfície útil no Expo (`mobile/`): hero, métricas, hourly, daily, GPS, busca, temas.
+
+## Smoke manual (web)
 
 Com `OPENWEATHERMAP_API_KEY` válida (keys novas do free tier podem levar até ~2h):
 
@@ -30,81 +48,59 @@ Com `OPENWEATHERMAP_API_KEY` válida (keys novas do free tier podem levar até ~
 npm run dev
 ```
 
-1. Permitir GPS → cidade + temperatura
-2. Buscar outra cidade
-3. Conferir hourly + daily
-4. Negar GPS (ou janela privada) → fallback + busca ainda funciona
+1. Permitir GPS → cidade + temperatura  
+2. Buscar outra cidade  
+3. Conferir hourly + daily  
+4. Negar GPS → fallback + busca ainda funciona  
 
 Se a API responder `401`, a key ainda não está ativa ou é inválida.
 
-## Testes
+## Testes (web)
 
 ```bash
 npm test              # unit + integration (Vitest)
-npm run test:unit     # só format + mapWeatherCode
-npm run test:e2e      # Playwright (sobe o Next automaticamente)
+npm run test:unit
+npm run test:e2e      # Playwright
 ```
 
-- **Unit:** `src/lib/format.test.ts`, `src/lib/open-weather.map.test.ts`
-- **Integration:** fixtures OWM + Route Handlers (fetch mockado)
-- **E2E:** `e2e/` com mocks de `/api/*` e geolocation fake/denied
-
-## Fora do escopo (MVP)
-
-Radar, AQI, alertas push, favoritos, anúncios, IA, app mobile
-
-## Roadmap (depois)
-
-| Área | Ideias |
-|------|--------|
-| Contexto | Radar, AQI / pólen / UV, nascer-pôr do sol, fase da lua |
-| Alertas | Notificações práticas (“vai chover em 30 min”) |
-| Extras | Comparar cidades, favoritos, widgets, modo viagem |
-| Monetização | Ads opcionais, se fizer sentido |
-| IA | Só se agregar perguntas práticas sobre dados já carregados — não é prioridade |
-| Mobile | Expo em `mobile/` — **depois** dos testes e smoke OWM |
-
-## Stack
-
-- Next.js (App Router) + TypeScript + Tailwind CSS
-- OpenWeatherMap Current + 5-day/3-hour Forecast + Geocoding
-- Vitest + Playwright
-- Fontes: DM Sans + Outfit
-
-## Como rodar
+## Como rodar web + mobile
 
 ```bash
-cp .env.example .env.local
-# cole sua OPENWEATHERMAP_API_KEY no .env.local
+# terminal 1 — BFF
+cp .env.example .env.local   # OPENWEATHERMAP_API_KEY
+npm install && npm run dev
 
-npm install
-npm run dev
+# terminal 2 — Expo
+cd mobile
+cp .env.example .env         # EXPO_PUBLIC_API_BASE=http://localhost:3000
+npm install && npm start
 ```
 
-Abra [http://localhost:3000](http://localhost:3000).
+Device físico: use o IP da LAN no `EXPO_PUBLIC_API_BASE`. Emulador Android: `http://10.0.2.2:3000`.
 
-```bash
-npm run build   # produção
-npm start
-```
-
-## API interna
+## API interna (BFF)
 
 | Rota | Query | Descrição |
 |------|-------|-----------|
-| `GET /api/weather` | `lat`, `lon` | Previsão normalizada (current, hourly ~24h/3h, daily) |
+| `GET /api/weather` | `lat`, `lon` | Previsão normalizada |
 | `GET /api/geocode` | `q` | Busca de cidades |
 
-Upstream: [OpenWeatherMap](https://openweathermap.org/api) — key só no servidor (`.env.local`, nunca commitada).
+Upstream: [OpenWeatherMap](https://openweathermap.org/api) — key só no servidor.
+
+## Stack
+
+- **Web:** Next.js + TypeScript + Tailwind + Vitest + Playwright
+- **Mobile:** Expo + Expo Router + TypeScript + expo-location
+- Fontes web: DM Sans + Outfit
 
 ## Estrutura
 
 ```
-src/app/api/     # Route Handlers
-src/components/  # UI do clima
-src/hooks/       # Geolocalização
-src/lib/         # OpenWeatherMap + formatação
-src/test/        # Fixtures de teste
+src/             # Next app + API
 e2e/             # Playwright
-mobile/          # Reservado para Expo (adiado)
+mobile/          # git submodule → saas-weatherly-mobile
 ```
+
+## Roadmap
+
+Radar, AQI, alertas, favoritos, ads, widgets — depois do smoke OWM estável.
