@@ -155,7 +155,10 @@ export function WeatherShell() {
         )}
 
         {state === "ready" && weather && place && (
-          <>
+          <div
+            key={`${place.latitude}-${place.longitude}-${weather.current.time}`}
+            className="weather-content flex flex-col gap-8"
+          >
             <Hero
               city={place.label}
               current={weather.current}
@@ -165,7 +168,7 @@ export function WeatherShell() {
             <MetricsRow current={weather.current} />
             <HourlyStrip hours={weather.hourly} />
             <DailyList days={weather.daily} />
-          </>
+          </div>
         )}
       </div>
     </div>

@@ -4,7 +4,9 @@
   --atmosphere-from: #5b8db8;
   --atmosphere-via: #7aa3c4;
   --atmosphere-to: #a8c5d8;
+  --atmosphere-glow: rgba(255, 255, 255, 0.16);
   --foreground: #ffffff;
+  --transition-atmosphere: background 0.9s ease, color 0.4s ease;
 }
 
 @theme inline {
@@ -29,59 +31,188 @@ body {
     var(--atmosphere-to) 100%
   );
   color: var(--foreground);
+  transition: var(--transition-atmosphere);
 }
 
 .atmosphere-overlay {
   background:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(255, 255, 255, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(0, 0, 0, 0.12), transparent 50%);
+    radial-gradient(
+      ellipse 80% 50% at 20% 10%,
+      var(--atmosphere-glow),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 80%,
+      rgba(0, 0, 0, 0.14),
+      transparent 50%
+    );
+  transition: opacity 0.8s ease;
+  animation: atmosphere-breathe 12s ease-in-out infinite alternate;
 }
 
-/* Theme placeholders — refined in atmosphere commit */
+@keyframes atmosphere-breathe {
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Clear day — bright sky blues */
 .theme-clear-day {
-  --atmosphere-from: #3d7eb8;
-  --atmosphere-via: #5fa0d4;
-  --atmosphere-to: #9ec9e8;
-}
-.theme-clear-night {
-  --atmosphere-from: #1a2744;
-  --atmosphere-via: #243556;
-  --atmosphere-to: #3a4a6b;
-}
-.theme-cloudy {
-  --atmosphere-from: #6b7f94;
-  --atmosphere-via: #8496a8;
-  --atmosphere-to: #a8b6c4;
-}
-.theme-fog {
-  --atmosphere-from: #7a858f;
-  --atmosphere-via: #95a0a8;
-  --atmosphere-to: #b0b8c0;
-}
-.theme-drizzle {
-  --atmosphere-from: #5a7088;
-  --atmosphere-via: #6e849c;
-  --atmosphere-to: #8fa3b5;
-}
-.theme-rain {
-  --atmosphere-from: #4a5c70;
-  --atmosphere-via: #5c7085;
-  --atmosphere-to: #74899c;
-}
-.theme-snow {
-  --atmosphere-from: #7a8fa3;
-  --atmosphere-via: #9aadc0;
-  --atmosphere-to: #c5d4e0;
-}
-.theme-storm {
-  --atmosphere-from: #2e3540;
-  --atmosphere-via: #3d4654;
-  --atmosphere-to: #556070;
+  --atmosphere-from: #2f74b8;
+  --atmosphere-via: #4f98d4;
+  --atmosphere-to: #9ecae8;
+  --atmosphere-glow: rgba(255, 255, 255, 0.22);
 }
 
+/* Clear night — deep indigo (not purple neon) */
+.theme-clear-night {
+  --atmosphere-from: #121c33;
+  --atmosphere-via: #1c2b4a;
+  --atmosphere-to: #2f4063;
+  --atmosphere-glow: rgba(160, 190, 230, 0.08);
+}
+
+/* Soft gray-blue overcast */
+.theme-cloudy {
+  --atmosphere-from: #5f7388;
+  --atmosphere-via: #7a8fa3;
+  --atmosphere-to: #a3b4c4;
+  --atmosphere-glow: rgba(255, 255, 255, 0.12);
+}
+
+.theme-fog {
+  --atmosphere-from: #6e7a86;
+  --atmosphere-via: #8b969f;
+  --atmosphere-to: #b0b8c0;
+  --atmosphere-glow: rgba(255, 255, 255, 0.2);
+}
+
+.theme-drizzle {
+  --atmosphere-from: #4f657c;
+  --atmosphere-via: #678098;
+  --atmosphere-to: #8fa3b5;
+  --atmosphere-glow: rgba(180, 210, 230, 0.1);
+}
+
+/* Slate rain */
+.theme-rain {
+  --atmosphere-from: #3d4f63;
+  --atmosphere-via: #53677c;
+  --atmosphere-to: #6e8499;
+  --atmosphere-glow: rgba(150, 180, 210, 0.08);
+}
+
+.theme-snow {
+  --atmosphere-from: #6d8298;
+  --atmosphere-via: #90a6bb;
+  --atmosphere-to: #c4d3e0;
+  --atmosphere-glow: rgba(255, 255, 255, 0.28);
+}
+
+/* Charcoal storm */
+.theme-storm {
+  --atmosphere-from: #232933;
+  --atmosphere-via: #343d4a;
+  --atmosphere-to: #4a5564;
+  --atmosphere-glow: rgba(120, 150, 180, 0.06);
+}
+
+/* Hero entrance */
+.hero-block {
+  animation: hero-fade-in 0.7s ease-out both;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metrics-row,
+.hourly-strip,
+.daily-list {
+  animation: section-fade-in 0.65s ease-out both;
+}
+
+.metrics-row {
+  animation-delay: 0.08s;
+}
+.hourly-strip {
+  animation-delay: 0.14s;
+}
+.daily-list {
+  animation-delay: 0.2s;
+}
+
+@keyframes section-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hourly horizontal scroll hint */
 .hourly-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(100% - 2rem),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(100% - 2rem),
+    transparent 100%
+  );
+}
+
+.hourly-strip {
+  position: relative;
+}
+
+.hourly-strip::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35)
+  );
+  border-radius: 999px;
+  animation: scroll-hint 2.2s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 0.8;
+  }
 }
 
 .loading-bar {
@@ -94,6 +225,22 @@ body {
   }
   100% {
     transform: translateX(200%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-block,
+  .metrics-row,
+  .hourly-strip,
+  .daily-list,
+  .atmosphere-overlay,
+  .loading-bar,
+  .hourly-strip::after {
+    animation: none !important;
+  }
+
+  .weather-shell {
+    transition: none;
   }
 }
 
