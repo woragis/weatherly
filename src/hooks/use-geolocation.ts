@@ -22,50 +22,81 @@ export type UseGeolocationResult = {
   request: () => void;
 };
 
+function readPosition(
+  onSuccess: (coords: GeoCoords) => void,
+  onFail: (status: GeolocationStatus, message: string) => void
+) {
+  if (typeof window === "undefined" || !("geolocation" in navigator)) {
+    onFail("unavailable", "Geolocalização não disponível neste navegador.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      onSuccess({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    },
+    (error) => {
+      if (error.code === error.PERMISSION_DENIED) {
+        onFail(
+          "denied",
+          "Permissão de localização negada. Busque uma cidade abaixo."
+        );
+      } else if (error.code === error.POSITION_UNAVAILABLE) {
+        onFail("unavailable", "Não foi possível obter sua posição.");
+      } else {
+        onFail("error", "Tempo esgotado ao obter localização.");
+      }
+    },
+    { enableHighAccuracy: false, timeout: 12000, maximumAge: 300_000 }
+  );
+}
+
 export function useGeolocation(autoRequest = true): UseGeolocationResult {
   const [coords, setCoords] = useState<GeoCoords | null>(null);
-  const [status, setStatus] = useState<GeolocationStatus>("idle");
+  const [status, setStatus] = useState<GeolocationStatus>(
+    autoRequest ? "pending" : "idle"
+  );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const request = useCallback(() => {
-    if (typeof window === "undefined" || !("geolocation" in navigator)) {
-      setStatus("unavailable");
-      setErrorMessage("Geolocalização não disponível neste navegador.");
-      return;
-    }
-
     setStatus("pending");
     setErrorMessage(null);
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
+    readPosition(
+      (next) => {
+        setCoords(next);
         setStatus("granted");
       },
-      (error) => {
-        if (error.code === error.PERMISSION_DENIED) {
-          setStatus("denied");
-          setErrorMessage(
-            "Permissão de localização negada. Busque uma cidade abaixo."
-          );
-        } else if (error.code === error.POSITION_UNAVAILABLE) {
-          setStatus("unavailable");
-          setErrorMessage("Não foi possível obter sua posição.");
-        } else {
-          setStatus("error");
-          setErrorMessage("Tempo esgotado ao obter localização.");
-        }
-      },
-      { enableHighAccuracy: false, timeout: 12000, maximumAge: 300_000 }
+      (nextStatus, message) => {
+        setStatus(nextStatus);
+        setErrorMessage(message);
+      }
     );
   }, []);
 
   useEffect(() => {
-    if (autoRequest) request();
-  }, [autoRequest, request]);
+    if (!autoRequest) return;
+
+    let cancelled = false;
+    readPosition(
+      (next) => {
+        if (cancelled) return;
+        setCoords(next);
+        setStatus("granted");
+      },
+      (nextStatus, message) => {
+        if (cancelled) return;
+        setStatus(nextStatus);
+        setErrorMessage(message);
+      }
+    );
+
+    return () => {
+      cancelled = true;
+    };
+  }, [autoRequest]);
 
   return { coords, status, errorMessage, request };
 }
