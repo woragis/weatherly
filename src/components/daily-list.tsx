@@ -1,5 +1,8 @@
+"use client";
+
 import { WeatherIcon } from "@/components/weather-icon";
-import { formatTemp, formatWeekday } from "@/lib/format";
+import { formatWeekday } from "@/lib/format";
+import { useUnits } from "@/lib/settings";
 import type { DailyPoint } from "@/lib/open-weather";
 
 type DailyListProps = {
@@ -7,6 +10,8 @@ type DailyListProps = {
 };
 
 export function DailyList({ days }: DailyListProps) {
+  const { formatTemp } = useUnits();
+
   return (
     <section aria-label="Previsão semanal" className="daily-list">
       <h2 className="mb-3 text-[0.7rem] uppercase tracking-[0.16em] text-white/55">

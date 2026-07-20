@@ -1,4 +1,6 @@
-import { formatTemp, formatWind } from "@/lib/format";
+"use client";
+
+import { useUnits } from "@/lib/settings";
 import type { CurrentWeather } from "@/lib/open-weather";
 
 type MetricsRowProps = {
@@ -6,6 +8,7 @@ type MetricsRowProps = {
 };
 
 export function MetricsRow({ current }: MetricsRowProps) {
+  const { formatTemp, formatWind } = useUnits();
   const items = [
     { label: "Sensação", value: formatTemp(current.feelsLike) },
     { label: "Umidade", value: `${Math.round(current.humidity)}%` },

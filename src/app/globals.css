@@ -228,6 +228,21 @@ body {
   }
 }
 
+/* Animações desativadas via configurações */
+.no-anim .hero-block,
+.no-anim .metrics-row,
+.no-anim .hourly-strip,
+.no-anim .daily-list,
+.no-anim .atmosphere-overlay,
+.no-anim .loading-bar,
+.no-anim .hourly-strip::after {
+  animation: none !important;
+}
+
+.no-anim .weather-shell {
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-block,
   .metrics-row,

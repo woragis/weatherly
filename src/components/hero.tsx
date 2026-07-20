@@ -1,5 +1,7 @@
+"use client";
+
 import { WeatherIcon } from "@/components/weather-icon";
-import { formatTemp } from "@/lib/format";
+import { useUnits } from "@/lib/settings";
 import type { CurrentWeather } from "@/lib/open-weather";
 
 type HeroProps = {
@@ -10,6 +12,8 @@ type HeroProps = {
 };
 
 export function Hero({ city, current, high, low }: HeroProps) {
+  const { formatTemp } = useUnits();
+
   return (
     <header className="hero-block flex flex-col items-start gap-3 pt-2">
       <p className="brand-mark font-[family-name:var(--font-display)] text-3xl tracking-tight text-white sm:text-4xl">

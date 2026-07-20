@@ -1,5 +1,8 @@
+"use client";
+
 import { WeatherIcon } from "@/components/weather-icon";
-import { formatHour, formatTemp } from "@/lib/format";
+import { formatHour } from "@/lib/format";
+import { useUnits } from "@/lib/settings";
 import type { HourlyPoint } from "@/lib/open-weather";
 
 type HourlyStripProps = {
@@ -7,6 +10,8 @@ type HourlyStripProps = {
 };
 
 export function HourlyStrip({ hours }: HourlyStripProps) {
+  const { formatTemp } = useUnits();
+
   return (
     <section aria-label="Previsão por hora" className="hourly-strip">
       <h2 className="mb-3 text-[0.7rem] uppercase tracking-[0.16em] text-white/55">

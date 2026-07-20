@@ -1,27 +1,27 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { AppNav } from "@/components/app-nav";
 import { CitySearch } from "@/components/city-search";
 import { DailyList } from "@/components/daily-list";
 import { Hero } from "@/components/hero";
 import { HourlyStrip } from "@/components/hourly-strip";
 import { MetricsRow } from "@/components/metrics-row";
 import { useGeolocation } from "@/hooks/use-geolocation";
+import type { Place } from "@/hooks/use-place";
 import type { GeocodeResult, WeatherPayload, WeatherTheme } from "@/lib/open-weather";
-
-type Place = {
-  label: string;
-  latitude: number;
-  longitude: number;
-};
 
 function placeKey(place: Place): string {
   return `${place.latitude.toFixed(4)},${place.longitude.toFixed(4)}`;
 }
 
-export function WeatherShell() {
-  const geo = useGeolocation(true);
-  const [manualPlace, setManualPlace] = useState<Place | null>(null);
+type WeatherShellProps = {
+  initialPlace?: Place | null;
+};
+
+export function WeatherShell({ initialPlace = null }: WeatherShellProps) {
+  const geo = useGeolocation(!initialPlace);
+  const [manualPlace, setManualPlace] = useState<Place | null>(initialPlace);
   const [cache, setCache] = useState<{
     key: string;
     weather: WeatherPayload;
@@ -105,7 +105,7 @@ export function WeatherShell() {
   return (
     <div className={`weather-shell min-h-dvh ${atmosphereClass}`}>
       <div className="atmosphere-overlay pointer-events-none absolute inset-0" />
-      <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-lg flex-col gap-8 px-5 pb-12 pt-8 sm:px-6">
+      <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-lg flex-col gap-8 px-5 pb-28 pt-8 sm:px-6">
         <CitySearch onSelect={handleCitySelect} />
 
         {(isLocating || isLoadingWeather) && (
@@ -186,6 +186,13 @@ export function WeatherShell() {
           </div>
         )}
       </div>
+      <AppNav
+        place={
+          place && place.label === "Sua localização" && weather?.locationName
+            ? { ...place, label: weather.locationName }
+            : place
+        }
+      />
     </div>
   );
 }
