@@ -1,6 +1,6 @@
 import { WeatherIcon } from "@/components/weather-icon";
 import { formatTemp, formatWeekday } from "@/lib/format";
-import type { DailyPoint } from "@/lib/open-meteo";
+import type { DailyPoint } from "@/lib/open-weather";
 
 type DailyListProps = {
   days: DailyPoint[];

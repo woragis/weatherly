@@ -1,5 +1,5 @@
 import { formatTemp, formatWind } from "@/lib/format";
-import type { CurrentWeather } from "@/lib/open-meteo";
+import type { CurrentWeather } from "@/lib/open-weather";
 
 type MetricsRowProps = {
   current: CurrentWeather;

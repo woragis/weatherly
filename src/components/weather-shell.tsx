@@ -7,7 +7,7 @@ import { Hero } from "@/components/hero";
 import { HourlyStrip } from "@/components/hourly-strip";
 import { MetricsRow } from "@/components/metrics-row";
 import { useGeolocation } from "@/hooks/use-geolocation";
-import type { GeocodeResult, WeatherPayload, WeatherTheme } from "@/lib/open-meteo";
+import type { GeocodeResult, WeatherPayload, WeatherTheme } from "@/lib/open-weather";
 
 type Place = {
   label: string;
@@ -171,7 +171,11 @@ export function WeatherShell() {
             className="weather-content flex flex-col gap-8"
           >
             <Hero
-              city={place.label}
+              city={
+                place.label === "Sua localização"
+                  ? (weather.locationName ?? place.label)
+                  : place.label
+              }
               current={weather.current}
               high={weather.daily[0]?.tempMax ?? weather.current.temperature}
               low={weather.daily[0]?.tempMin ?? weather.current.temperature}

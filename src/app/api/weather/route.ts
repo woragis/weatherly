@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchForecast, REVALIDATE_SECONDS } from "@/lib/open-meteo";
+import { fetchForecast, REVALIDATE_SECONDS } from "@/lib/open-weather";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
@@ -28,9 +28,10 @@ export async function GET(request: NextRequest) {
     });
   } catch (err) {
     console.error("[api/weather]", err);
-    return NextResponse.json(
-      { error: "Não foi possível obter a previsão." },
-      { status: 502 }
-    );
+    const message =
+      err instanceof Error && err.message.includes("OPENWEATHERMAP_API_KEY")
+        ? "API key do OpenWeatherMap não configurada."
+        : "Não foi possível obter a previsão.";
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }

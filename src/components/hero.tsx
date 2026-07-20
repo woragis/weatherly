@@ -1,6 +1,6 @@
 import { WeatherIcon } from "@/components/weather-icon";
 import { formatTemp } from "@/lib/format";
-import type { CurrentWeather } from "@/lib/open-meteo";
+import type { CurrentWeather } from "@/lib/open-weather";
 
 type HeroProps = {
   city: string;

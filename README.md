@@ -7,7 +7,7 @@ App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geoloca
 ## Posicionamento
 
 - Demonstrar qualidade técnica e visual (referência: Apple Weather)
-- Dados via **Open-Meteo** (gratuito, sem API key)
+- Dados via **OpenWeatherMap** (plano gratuito; key em `.env.local`)
 - **Sem IA** no curto prazo
 - **Mobile** (Expo) fica para depois — pasta `mobile/` reservada (futuro submodule)
 
@@ -40,12 +40,15 @@ Radar, AQI, alertas push, favoritos, anúncios, IA, app mobile
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
-- Open-Meteo Forecast + Geocoding APIs
+- OpenWeatherMap Current + 5-day/3-hour Forecast + Geocoding
 - Fontes: DM Sans + Outfit
 
 ## Como rodar
 
 ```bash
+cp .env.example .env.local
+# cole sua OPENWEATHERMAP_API_KEY no .env.local
+
 npm install
 npm run dev
 ```
@@ -61,10 +64,10 @@ npm start
 
 | Rota | Query | Descrição |
 |------|-------|-----------|
-| `GET /api/weather` | `lat`, `lon` | Previsão normalizada (current, hourly, daily) |
-| `GET /api/geocode` | `q` | Busca de cidades (pt) |
+| `GET /api/weather` | `lat`, `lon` | Previsão normalizada (current, hourly ~24h/3h, daily) |
+| `GET /api/geocode` | `q` | Busca de cidades |
 
-Upstream: [Open-Meteo](https://open-meteo.com/) — sem chave.
+Upstream: [OpenWeatherMap](https://openweathermap.org/api) — key só no servidor (`.env.local`, nunca commitada).
 
 ## Estrutura
 
@@ -72,6 +75,6 @@ Upstream: [Open-Meteo](https://open-meteo.com/) — sem chave.
 src/app/api/     # Route Handlers
 src/components/  # UI do clima
 src/hooks/       # Geolocalização
-src/lib/         # Open-Meteo + formatação
+src/lib/         # OpenWeatherMap + formatação
 mobile/          # Reservado para Expo (futuro)
 ```

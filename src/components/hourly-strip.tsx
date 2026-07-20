@@ -1,6 +1,6 @@
 import { WeatherIcon } from "@/components/weather-icon";
 import { formatHour, formatTemp } from "@/lib/format";
-import type { HourlyPoint } from "@/lib/open-meteo";
+import type { HourlyPoint } from "@/lib/open-weather";
 
 type HourlyStripProps = {
   hours: HourlyPoint[];

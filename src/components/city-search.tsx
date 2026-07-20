@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import type { GeocodeResult } from "@/lib/open-meteo";
+import type { GeocodeResult } from "@/lib/open-weather";
 
 type CitySearchProps = {
   onSelect: (place: GeocodeResult) => void;

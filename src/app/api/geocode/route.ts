@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchGeocode, REVALIDATE_SECONDS } from "@/lib/open-meteo";
+import { fetchGeocode, REVALIDATE_SECONDS } from "@/lib/open-weather";
 
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get("q")?.trim() ?? "";
@@ -23,9 +23,10 @@ export async function GET(request: NextRequest) {
     );
   } catch (err) {
     console.error("[api/geocode]", err);
-    return NextResponse.json(
-      { error: "Não foi possível buscar cidades." },
-      { status: 502 }
-    );
+    const message =
+      err instanceof Error && err.message.includes("OPENWEATHERMAP_API_KEY")
+        ? "API key do OpenWeatherMap não configurada."
+        : "Não foi possível buscar cidades.";
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }
