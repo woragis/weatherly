@@ -56,6 +56,7 @@ vercel --prod
 | Variável | Escopo | Notas |
 |----------|--------|--------|
 | `OPENWEATHERMAP_API_KEY` | Production, Preview, Development | Free tier OWM; só no servidor |
+| `APP_URL` | Production/Preview: `https://saas-weatherly.vercel.app` · Dev: `http://localhost:3000` | metadataBase, sitemap, robots |
 
 Mobile em produção: `EXPO_PUBLIC_API_BASE=https://saas-weatherly.vercel.app`
 
@@ -110,6 +111,16 @@ Device físico: use o IP da LAN no `EXPO_PUBLIC_API_BASE`. Emulador Android: `ht
 | `/cidades` | Cidades | Favoritos + comparação |
 | `/alertas` | Alertas | Alertas derivados + preferências |
 | `/config` | Ajustes | Unidades (°C/°F, km/h/m/s) |
+
+**SEO (web):**
+
+| Rota | Conteúdo |
+|------|----------|
+| `/clima` | Índice de cidades BR |
+| `/clima/[slug]` | Previsão SSR + metadata dinâmica (OWM) |
+| `/blog` | Lista de posts |
+| `/blog/[slug]` | Artigo + JSON-LD |
+| `/robots.txt` / `/sitemap.xml` | Crawlers |
 
 ## API interna (BFF)
 

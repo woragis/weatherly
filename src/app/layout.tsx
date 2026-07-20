@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
 import { SettingsProvider } from "@/lib/settings";
+import { siteUrl, SITE } from "@/lib/site";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -15,10 +16,47 @@ const outfit = Outfit({
   weight: ["500", "600", "700"],
 });
 
+const base = siteUrl();
+
 export const metadata: Metadata = {
-  title: "Weatherly — clima com clareza",
-  description:
-    "App de clima para portfólio: previsão atual, horária e diária via OpenWeatherMap.",
+  metadataBase: base,
+  title: {
+    default: SITE.name,
+    template: `%s · ${SITE.name}`,
+  },
+  description: SITE.tagline,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
+  keywords: [
+    "previsão do tempo",
+    "clima",
+    "temperatura",
+    "radar de chuva",
+    "qualidade do ar",
+    "índice UV",
+    "Weatherly",
+  ],
+  openGraph: {
+    type: "website",
+    locale: SITE.locale,
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.tagline,
+    url: base,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.tagline,
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
