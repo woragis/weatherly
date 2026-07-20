@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weatherly — Alertas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="back" href="index.html">← Protótipos</a>
+  <h1 class="page-title">Alertas</h1>
+  <p class="page-sub">Roadmap: notificações práticas + preferências</p>
+
+  <div class="phones">
+    <div>
+      <p class="phone-label">Central de alertas</p>
+      <div class="phone">
+        <div class="screen storm">
+          <div class="statusbar"><span>13:40</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-size:18px;">←</span>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:20px;">Alertas</div>
+          </div>
+
+          <div class="alert-banner">
+            <span style="font-size:20px;">🌧️</span>
+            <div class="body">
+              <strong>Vai chover em 30 minutos</strong>
+              Leve um guarda-chuva. Chuva moderada prevista até 16h em João Pessoa.
+            </div>
+          </div>
+
+          <div class="alert-banner" style="background: rgba(255,90,60,0.15); border-color: rgba(255,90,60,0.4);">
+            <span style="font-size:20px;">🥵</span>
+            <div class="body">
+              <strong>Índice UV muito alto hoje</strong>
+              Entre 10h e 16h, prefira sombra e use protetor solar.
+            </div>
+          </div>
+
+          <div class="alert-banner" style="background: rgba(90,160,255,0.12); border-color: rgba(90,160,255,0.35);">
+            <span style="font-size:20px;">💨</span>
+            <div class="body">
+              <strong>Rajadas de vento à noite</strong>
+              Até 45 km/h a partir das 20h no litoral.
+            </div>
+          </div>
+
+          <div class="section-title" style="margin-top:28px;">Anteriores</div>
+          <div class="card" style="opacity:.6;">
+            <div class="kv"><span class="k">Ontem · 18:20</span><span class="v">🌧️ Chuva encerrada</span></div>
+            <div class="kv"><span class="k">Sáb · 09:12</span><span class="v">☀️ Fim de semana de sol</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="phone-label">Preferências</p>
+      <div class="phone">
+        <div class="screen storm">
+          <div class="statusbar"><span>13:41</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-size:18px;">←</span>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:20px;">Preferências de alerta</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Notificações</div>
+            <div class="kv"><span class="k">Chuva chegando</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">UV alto</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Vento forte</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Mudança brusca de temperatura</span><span class="toggle"></span></div>
+            <div class="kv"><span class="k">Resumo diário (07h)</span><span class="toggle on"></span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Cidades monitoradas</div>
+            <div class="kv"><span class="k">📍 Localização atual</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Recife</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">São Paulo</span><span class="toggle"></span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Silenciar</div>
+            <div class="kv"><span class="k">Não perturbe (22h–07h)</span><span class="toggle on"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

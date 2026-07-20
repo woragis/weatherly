@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weatherly — Detalhes do dia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="back" href="index.html">← Protótipos</a>
+  <h1 class="page-title">Detalhes do dia</h1>
+  <p class="page-sub">Roadmap: contexto — AQI, UV, sol, lua</p>
+
+  <div class="phones">
+    <div>
+      <p class="phone-label">Dia</p>
+      <div class="phone">
+        <div class="screen clear-day">
+          <div class="statusbar"><span>15:42</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+            <span style="font-size:18px;">←</span>
+            <div>
+              <div style="font-family:var(--font-display); font-weight:700; font-size:18px;">Hoje, 20 de julho</div>
+              <div style="font-size:12px; color:var(--text-70);">João Pessoa, BR</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Qualidade do ar</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family:var(--font-display); font-size:34px; font-weight:700;">42</div>
+                <div style="font-size:13px; color:var(--text-70); margin-top:2px;">AQI — Boa</div>
+              </div>
+              <span class="pill" style="background: rgba(52,199,89,0.25); color:#8ff0a4;">Boa</span>
+            </div>
+            <div class="bar"><span style="width:28%; background: linear-gradient(90deg,#34c759,#ffd60a);"></span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Índice UV</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family:var(--font-display); font-size:34px; font-weight:700;">8</div>
+                <div style="font-size:13px; color:var(--text-70); margin-top:2px;">Muito alto — evite sol das 10h às 16h</div>
+              </div>
+              <span class="pill" style="background: rgba(255,90,60,0.25); color:#ffb09e;">Muito alto</span>
+            </div>
+            <div class="bar"><span style="width:73%; background: linear-gradient(90deg,#ffd60a,#ff453a);"></span></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card" style="margin:0;">
+              <div class="card-title">Sol</div>
+              <div class="kv"><span class="k">Nascer</span><span class="v">05:32</span></div>
+              <div class="kv"><span class="k">Pôr</span><span class="v">17:18</span></div>
+            </div>
+            <div class="card" style="margin:0;">
+              <div class="card-title">Lua</div>
+              <div style="text-align:center; font-size:34px; margin:4px 0;">🌔</div>
+              <div style="text-align:center; font-size:12px; color:var(--text-70);">Crescente gibosa · 78%</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <div class="card-title">Condições</div>
+            <div class="kv"><span class="k">Sensação térmica</span><span class="v">30°</span></div>
+            <div class="kv"><span class="k">Umidade</span><span class="v">66%</span></div>
+            <div class="kv"><span class="k">Vento</span><span class="v">13 km/h L</span></div>
+            <div class="kv"><span class="k">Pressão</span><span class="v">1014 hPa</span></div>
+            <div class="kv"><span class="k">Visibilidade</span><span class="v">10 km</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="phone-label">Noite</p>
+      <div class="phone">
+        <div class="screen clear-night">
+          <div class="statusbar"><span>21:30</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+            <span style="font-size:18px;">←</span>
+            <div>
+              <div style="font-family:var(--font-display); font-weight:700; font-size:18px;">Hoje, 20 de julho</div>
+              <div style="font-size:12px; color:var(--text-70);">João Pessoa, BR</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Qualidade do ar</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family:var(--font-display); font-size:34px; font-weight:700;">38</div>
+                <div style="font-size:13px; color:var(--text-70); margin-top:2px;">AQI — Boa</div>
+              </div>
+              <span class="pill" style="background: rgba(52,199,89,0.25); color:#8ff0a4;">Boa</span>
+            </div>
+            <div class="bar"><span style="width:25%; background: linear-gradient(90deg,#34c759,#ffd60a);"></span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Índice UV</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family:var(--font-display); font-size:34px; font-weight:700;">0</div>
+                <div style="font-size:13px; color:var(--text-70); margin-top:2px;">Sem exposição solar agora</div>
+              </div>
+              <span class="pill" style="background: rgba(255,255,255,0.16);">—</span>
+            </div>
+            <div class="bar"><span style="width:2%; background:#34c759;"></span></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card" style="margin:0;">
+              <div class="card-title">Sol</div>
+              <div class="kv"><span class="k">Nascer</span><span class="v">05:32</span></div>
+              <div class="kv"><span class="k">Pôr</span><span class="v">17:18</span></div>
+            </div>
+            <div class="card" style="margin:0;">
+              <div class="card-title">Lua</div>
+              <div style="text-align:center; font-size:34px; margin:4px 0;">🌕</div>
+              <div style="text-align:center; font-size:12px; color:var(--text-70);">Cheia em 2 dias</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <div class="card-title">Condições</div>
+            <div class="kv"><span class="k">Sensação térmica</span><span class="v">25°</span></div>
+            <div class="kv"><span class="k">Umidade</span><span class="v">78%</span></div>
+            <div class="kv"><span class="k">Vento</span><span class="v">9 km/h L</span></div>
+            <div class="kv"><span class="k">Pressão</span><span class="v">1016 hPa</span></div>
+            <div class="kv"><span class="k">Visibilidade</span><span class="v">10 km</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

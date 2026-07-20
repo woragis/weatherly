@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weatherly — Configurações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="back" href="index.html">← Protótipos</a>
+  <h1 class="page-title">Configurações</h1>
+  <p class="page-sub">Roadmap: unidades, tema, idioma, modo viagem</p>
+
+  <div class="phones">
+    <div>
+      <p class="phone-label">Configurações</p>
+      <div class="phone">
+        <div class="screen fog">
+          <div class="statusbar"><span>08:15</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-size:18px;">←</span>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:20px;">Configurações</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Unidades</div>
+            <div class="kv"><span class="k">Temperatura</span><span class="v">°C</span></div>
+            <div class="kv"><span class="k">Vento</span><span class="v">km/h</span></div>
+            <div class="kv"><span class="k">Pressão</span><span class="v">hPa</span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Aparência</div>
+            <div class="kv"><span class="k">Tema</span><span class="v">Automático (clima)</span></div>
+            <div class="kv"><span class="k">Animações de fundo</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Reduzir movimento</span><span class="toggle"></span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Localização</div>
+            <div class="kv"><span class="k">Usar GPS</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Modo viagem</span><span class="toggle on"></span></div>
+            <div style="font-size:12px; color:var(--text-55); margin-top:6px; line-height:1.5;">
+              Modo viagem: ao detectar mudança de cidade, o clima local é atualizado automaticamente.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Geral</div>
+            <div class="kv"><span class="k">Idioma</span><span class="v">Português (BR)</span></div>
+            <div class="kv"><span class="k">Atualização em segundo plano</span><span class="toggle on"></span></div>
+            <div class="kv"><span class="k">Sobre o Weatherly</span><span class="v">v0.1.0</span></div>
+          </div>
+
+          <div style="text-align:center; margin-top:22px; font-size:11px; color:var(--text-55);">
+            Dados: OpenWeatherMap · Weatherly não é um serviço meteorológico oficial
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

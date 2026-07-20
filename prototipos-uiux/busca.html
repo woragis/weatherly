@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weatherly — Busca de cidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="back" href="index.html">← Protótipos</a>
+  <h1 class="page-title">Busca de cidade</h1>
+  <p class="page-sub">Autocomplete via geocoding (mín. 2 caracteres, debounce 300ms)</p>
+
+  <div class="phones">
+    <!-- Digitando -->
+    <div>
+      <p class="phone-label">Resultados abertos</p>
+      <div class="phone">
+        <div class="screen cloudy">
+          <div class="statusbar"><span>10:22</span><span>📶 🔋</span></div>
+
+          <div class="search" style="color:#fff; border-color: rgba(255,255,255,0.45); background: var(--glass-strong)">
+            <span class="icon">🔍</span> joao&nbsp;<span style="opacity:.4">|</span>
+          </div>
+          <div class="dropdown">
+            <div class="item active">João Pessoa, Paraíba, BR</div>
+            <div class="item">João Pinheiro, Minas Gerais, BR</div>
+            <div class="item">João Câmara, Rio Grande do Norte, BR</div>
+            <div class="item">João Monlevade, Minas Gerais, BR</div>
+          </div>
+
+          <div class="brand" style="opacity:.35">Weatherly</div>
+          <div class="city" style="opacity:.35">São Paulo, BR</div>
+          <div class="hero-row" style="opacity:.35">
+            <div class="temp-big">19°</div>
+            <div class="cond"><span class="emoji">☁️</span>Nublado</div>
+          </div>
+          <div class="range" style="opacity:.35">Máx 21° · Mín 15°</div>
+
+          <div class="metrics" style="opacity:.35">
+            <div class="metric"><div class="label">Sensação</div><div class="value">18°</div></div>
+            <div class="metric"><div class="label">Umidade</div><div class="value">71%</div></div>
+            <div class="metric"><div class="label">Vento</div><div class="value">16 km/h</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buscando -->
+    <div>
+      <p class="phone-label">Buscando…</p>
+      <div class="phone">
+        <div class="screen cloudy">
+          <div class="statusbar"><span>10:22</span><span>📶 🔋</span></div>
+
+          <div class="search" style="color:#fff; border-color: rgba(255,255,255,0.45); background: var(--glass-strong)">
+            <span class="icon">🔍</span> reci&nbsp;<span style="opacity:.4">|</span>
+          </div>
+          <p style="font-size:12px; color: var(--text-70); margin-top:8px;">Buscando…</p>
+
+          <div class="brand" style="opacity:.35">Weatherly</div>
+          <div class="city" style="opacity:.35">São Paulo, BR</div>
+          <div class="hero-row" style="opacity:.35">
+            <div class="temp-big">19°</div>
+            <div class="cond"><span class="emoji">☁️</span>Nublado</div>
+          </div>
+          <div class="range" style="opacity:.35">Máx 21° · Mín 15°</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sem resultados -->
+    <div>
+      <p class="phone-label">Sem resultados / erro</p>
+      <div class="phone">
+        <div class="screen cloudy">
+          <div class="statusbar"><span>10:23</span><span>📶 🔋</span></div>
+
+          <div class="search" style="color:#fff; border-color: rgba(255,255,255,0.45); background: var(--glass-strong)">
+            <span class="icon">🔍</span> xyzabc&nbsp;<span style="opacity:.4">|</span>
+          </div>
+          <p style="font-size:12px; color:#fde68a; margin-top:8px;">Nenhuma cidade encontrada.</p>
+
+          <div class="brand" style="opacity:.35">Weatherly</div>
+          <div class="city" style="opacity:.35">São Paulo, BR</div>
+          <div class="hero-row" style="opacity:.35">
+            <div class="temp-big">19°</div>
+            <div class="cond"><span class="emoji">☁️</span>Nublado</div>
+          </div>
+          <div class="range" style="opacity:.35">Máx 21° · Mín 15°</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

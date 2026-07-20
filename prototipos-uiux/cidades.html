@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weatherly — Minhas cidades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="back" href="index.html">← Protótipos</a>
+  <h1 class="page-title">Minhas cidades</h1>
+  <p class="page-sub">Roadmap: favoritos + comparação rápida</p>
+
+  <div class="phones">
+    <div>
+      <p class="phone-label">Favoritos</p>
+      <div class="phone">
+        <div class="screen clear-night" style="background: linear-gradient(165deg, #0d1526, #16203a);">
+          <div class="statusbar"><span>19:44</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div style="font-family:var(--font-display); font-weight:700; font-size:22px;">Minhas cidades</div>
+            <span class="btn" style="padding:6px 12px;">+ Adicionar</span>
+          </div>
+
+          <div class="search" style="margin-bottom:16px;"><span class="icon">🔍</span> Buscar cidade…</div>
+
+          <div class="city-card clear-day">
+            <div class="info">
+              <div class="name">📍 João Pessoa</div>
+              <div class="desc">Sua localização · Céu limpo</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="t">28°</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.8);">31° / 24°</div>
+            </div>
+          </div>
+
+          <div class="city-card rain">
+            <div class="info">
+              <div class="name">Recife</div>
+              <div class="desc">Chuva moderada</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="t">23°</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.8);">25° / 21°</div>
+            </div>
+          </div>
+
+          <div class="city-card cloudy">
+            <div class="info">
+              <div class="name">São Paulo</div>
+              <div class="desc">Nublado</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="t">19°</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.8);">21° / 15°</div>
+            </div>
+          </div>
+
+          <div class="city-card clear-night">
+            <div class="info">
+              <div class="name">Lisboa</div>
+              <div class="desc">Céu limpo · 23:44 local</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="t">17°</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.8);">24° / 15°</div>
+            </div>
+          </div>
+
+          <div class="city-card storm">
+            <div class="info">
+              <div class="name">Tóquio</div>
+              <div class="desc">Tempestade · 07:44 local</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="t">26°</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.8);">29° / 24°</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="phone-label">Comparar</p>
+      <div class="phone">
+        <div class="screen clear-night" style="background: linear-gradient(165deg, #0d1526, #16203a);">
+          <div class="statusbar"><span>19:45</span><span>📶 🔋</span></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-size:18px;">←</span>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:20px;">Comparar</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Agora</div>
+            <div class="kv"><span class="k">João Pessoa</span><span class="v">☀️ 28°</span></div>
+            <div class="kv"><span class="k">Recife</span><span class="v">🌧️ 23°</span></div>
+            <div class="kv"><span class="k">São Paulo</span><span class="v">☁️ 19°</span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Chance de chuva hoje</div>
+            <div class="kv"><span class="k">João Pessoa</span><span class="v">10%</span></div>
+            <div class="kv"><span class="k">Recife</span><span class="v">90%</span></div>
+            <div class="kv"><span class="k">São Paulo</span><span class="v">35%</span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Sensação · Umidade · Vento</div>
+            <div class="kv"><span class="k">João Pessoa</span><span class="v">30° · 66% · 13 km/h</span></div>
+            <div class="kv"><span class="k">Recife</span><span class="v">24° · 92% · 22 km/h</span></div>
+            <div class="kv"><span class="k">São Paulo</span><span class="v">18° · 71% · 16 km/h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
