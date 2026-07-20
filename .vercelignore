@@ -1,0 +1,16 @@
+# Keep Expo submodule and local artifacts out of Vercel uploads
+mobile
+.git
+.gitignore
+.next
+node_modules
+playwright-report
+test-results
+blob-report
+e2e
+prototipos-uiux
+coverage
+*.md
+!README.md
+.env*
+!.env.example

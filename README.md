@@ -2,12 +2,13 @@
 
 App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geolocalização e cache. Não é um produto de assinatura — o prefixo `saas-` é só o nome do repo.
 
-> Status: MVP web + mobile (Expo submodule)
+> Status: MVP web + mobile (Expo submodule) · **web em produção na Vercel**
 
 | Repo | URL |
 |------|-----|
 | Web + BFF | https://github.com/woragis/saas-weatherly |
 | Mobile (submodule `mobile/`) | https://github.com/woragis/saas-weatherly-mobile |
+| **Demo (produção)** | https://saas-weatherly.vercel.app |
 
 ## Clone
 
@@ -39,6 +40,24 @@ git submodule update --init --recursive
 ## MVP mobile
 
 Mesma superfície útil no Expo (`mobile/`): hero, métricas, hourly, daily, GPS, busca, temas.
+
+## Deploy (Vercel)
+
+Projeto: `saas-weatherly` · alias: https://saas-weatherly.vercel.app
+
+```bash
+vercel link --yes --project saas-weatherly
+vercel env add OPENWEATHERMAP_API_KEY   # Production / Preview / Development
+vercel --prod
+```
+
+**Env obrigatória:**
+
+| Variável | Escopo | Notas |
+|----------|--------|--------|
+| `OPENWEATHERMAP_API_KEY` | Production, Preview, Development | Free tier OWM; só no servidor |
+
+Mobile em produção: `EXPO_PUBLIC_API_BASE=https://saas-weatherly.vercel.app`
 
 ## Smoke manual (web)
 

@@ -18,7 +18,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Weatherly — clima com clareza",
   description:
-    "App de clima para portfólio: previsão atual, horária e diária via Open-Meteo.",
+    "App de clima para portfólio: previsão atual, horária e diária via OpenWeatherMap.",
 };
 
 export default function RootLayout({
