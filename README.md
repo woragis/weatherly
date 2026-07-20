@@ -9,7 +9,7 @@ App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geoloca
 - Demonstrar qualidade técnica e visual (referência: Apple Weather)
 - Dados via **OpenWeatherMap** (plano gratuito; key em `.env.local`)
 - **Sem IA** no curto prazo
-- **Mobile** (Expo) fica para depois — pasta `mobile/` reservada (futuro submodule)
+- **Mobile** (Expo) **adiado** até key OWM ok + testes verdes — ver [`mobile/README.md`](mobile/README.md)
 
 ## MVP (agora)
 
@@ -21,6 +21,33 @@ App de clima focado em **portfólio / utilidade**: UI/UX, APIs externas, geoloca
 - Atmosfera (gradiente) que muda com condição e dia/noite
 - Animações leves (entrada do hero, dica de scroll, transição de fundo)
 - Route Handlers Next.js com cache ~15 min
+
+## Smoke manual
+
+Com `OPENWEATHERMAP_API_KEY` válida (keys novas do free tier podem levar até ~2h):
+
+```bash
+npm run dev
+```
+
+1. Permitir GPS → cidade + temperatura
+2. Buscar outra cidade
+3. Conferir hourly + daily
+4. Negar GPS (ou janela privada) → fallback + busca ainda funciona
+
+Se a API responder `401`, a key ainda não está ativa ou é inválida.
+
+## Testes
+
+```bash
+npm test              # unit + integration (Vitest)
+npm run test:unit     # só format + mapWeatherCode
+npm run test:e2e      # Playwright (sobe o Next automaticamente)
+```
+
+- **Unit:** `src/lib/format.test.ts`, `src/lib/open-weather.map.test.ts`
+- **Integration:** fixtures OWM + Route Handlers (fetch mockado)
+- **E2E:** `e2e/` com mocks de `/api/*` e geolocation fake/denied
 
 ## Fora do escopo (MVP)
 
@@ -35,12 +62,13 @@ Radar, AQI, alertas push, favoritos, anúncios, IA, app mobile
 | Extras | Comparar cidades, favoritos, widgets, modo viagem |
 | Monetização | Ads opcionais, se fizer sentido |
 | IA | Só se agregar perguntas práticas sobre dados já carregados — não é prioridade |
-| Mobile | App Expo em `mobile/` (submodule / workspace separado) |
+| Mobile | Expo em `mobile/` — **depois** dos testes e smoke OWM |
 
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
 - OpenWeatherMap Current + 5-day/3-hour Forecast + Geocoding
+- Vitest + Playwright
 - Fontes: DM Sans + Outfit
 
 ## Como rodar
@@ -76,5 +104,7 @@ src/app/api/     # Route Handlers
 src/components/  # UI do clima
 src/hooks/       # Geolocalização
 src/lib/         # OpenWeatherMap + formatação
-mobile/          # Reservado para Expo (futuro)
+src/test/        # Fixtures de teste
+e2e/             # Playwright
+mobile/          # Reservado para Expo (adiado)
 ```
