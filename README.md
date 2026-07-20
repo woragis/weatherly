@@ -78,19 +78,34 @@ npm install && npm start
 
 Device físico: use o IP da LAN no `EXPO_PUBLIC_API_BASE`. Emulador Android: `http://10.0.2.2:3000`.
 
+## Telas (web + mobile)
+
+**MVP:** home (hero, métricas, hourly, daily), busca de cidade, loading/erro/GPS negado.
+
+**Roadmap já na UI:**
+
+| Rota web | Aba mobile | Conteúdo |
+|----------|------------|----------|
+| `/detalhes` | Detalhes | AQI, UV, sol/lua, condições |
+| `/radar` | Radar | RainViewer embed |
+| `/cidades` | Cidades | Favoritos + comparação |
+| `/alertas` | Alertas | Alertas derivados + preferências |
+| `/config` | Ajustes | Unidades (°C/°F, km/h/m/s) |
+
 ## API interna (BFF)
 
 | Rota | Query | Descrição |
 |------|-------|-----------|
 | `GET /api/weather` | `lat`, `lon` | Previsão normalizada |
 | `GET /api/geocode` | `q` | Busca de cidades |
+| `GET /api/details` | `lat`, `lon` | AQI (OWM), UV (Open-Meteo), sol/lua, condições |
 
-Upstream: [OpenWeatherMap](https://openweathermap.org/api) — key só no servidor.
+Upstream principal: [OpenWeatherMap](https://openweathermap.org/api) — key só no servidor. UV via Open-Meteo (sem key). Radar via RainViewer (embed).
 
 ## Stack
 
 - **Web:** Next.js + TypeScript + Tailwind + Vitest + Playwright
-- **Mobile:** Expo + Expo Router + TypeScript + expo-location
+- **Mobile:** Expo SDK 54 + Expo Router + TypeScript + expo-location + WebView
 - Fontes web: DM Sans + Outfit
 
 ## Estrutura
@@ -98,9 +113,10 @@ Upstream: [OpenWeatherMap](https://openweathermap.org/api) — key só no servid
 ```
 src/             # Next app + API
 e2e/             # Playwright
+prototipos-uiux/ # HTML/CSS de referência visual
 mobile/          # git submodule → saas-weatherly-mobile
 ```
 
-## Roadmap
+## Roadmap restante
 
-Radar, AQI, alertas, favoritos, ads, widgets — depois do smoke OWM estável.
+Notificações push, ads, widgets, modo viagem — depois do smoke OWM estável.
